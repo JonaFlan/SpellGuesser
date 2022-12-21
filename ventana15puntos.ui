@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>VentanaCorreo</class>
+ <widget class="QDialog" name="VentanaCorreo">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>402</width>
-    <height>108</height>
+    <height>150</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Spell Guesser 0.2</string>
   </property>
   <property name="windowIcon">
    <iconset>
     <normaloff>icono.png</normaloff>icono.png</iconset>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="cajaTextoCorreo">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -51,6 +51,22 @@
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Ingresa tu correo para recibir tu clave&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="botonEnviarCorreo">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>100</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>Enviar</string>
    </property>
   </widget>
  </widget>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Spell Guesser 0.1</string>
+   <string>Spell Guesser 0.2</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -22,7 +22,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>260</y>
+      <y>280</y>
       <width>101</width>
       <height>51</height>
      </rect>
@@ -115,6 +115,19 @@
     </property>
     <property name="scaledContents">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botonPrueba">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>280</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PROBAR</string>
     </property>
    </widget>
   </widget>

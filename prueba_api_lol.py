@@ -2,7 +2,8 @@ import sys
 import requests
 import random
 from PyQt5 import uic, QtWidgets
-from PyQt5 import QtGui 
+from PyQt5 import QtGui
+from ventana15puntos import Ui_VentanaCorreo
 
 qtCreatorFile = "nose.ui" 
 
@@ -17,10 +18,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #BOOLEANOS DE EVENTOS COMPLETOS
         self.juegoIniciado = False
         self.cajaCmapeonesHecha = False
+        self.quincePuntosObtenidos = False
         #BOTONES
         self.botonActualizarImagen.clicked.connect(self.generarImagen)
         self.botonEnviar.clicked.connect(self.enviarRespuesta)
-        #CAJA DE TEXTO
+        #BOTON DE PRUEBA
+        self.botonPrueba.clicked.connect(self.probar)
     
     def generarImagen(self):
         #campeones = "http://ddragon.leagueoflegends.com/cdn/12.23.1/data/es_MX/champion.json"
@@ -30,6 +33,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.juegoIniciado == False:
             self.botonActualizarImagen.deleteLater()
             self.juegoIniciado = True
+
         #REQUEST PARA LA LISTA DE CAMPEONES
         response = requests.get("http://ddragon.leagueoflegends.com/cdn/12.23.1/data/es_MX/champion.json")
         r = response.json()
@@ -83,13 +87,26 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def enviarRespuesta(self):
         if self.cajaCampeones.currentText() == self.nameCampeon:
             self.contador += 1
+            if self.contador == 1 and self.quincePuntosObtenidos == False:
+                self.abrirVentanaCorreo()
+                self.quincePuntosObtenidos = True
             self.cajaContador.display(self.contador)
             self.generarImagen()
         else:
             self.contador = 0
             self.cajaContador.display(self.contador)
             self.generarImagen()
-
+    
+    def abrirVentanaCorreo(self):
+        self.ventana = QtWidgets.QMainWindow()
+        self.ui = Ui_VentanaCorreo()
+        self.ui.setupUi(self.ventana)
+        self.ventana.show()
+        
+    #FUNCION DE PRUEBA
+    def probar(self):
+        self.ventana.close()
+        
 if __name__ == "__main__":
     app =  QtWidgets.QApplication(sys.argv)
     window = MyApp()
