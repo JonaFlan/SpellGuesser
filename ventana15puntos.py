@@ -32,6 +32,8 @@ class Ui_VentanaCorreo(object):
         self.botonEnviarCorreo.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.botonEnviarCorreo.setObjectName("botonEnviarCorreo")
 
+        #BOOLEANOS DE EVENTOS COMPLETADOS
+        self.correoEnviado = False
         self.envioFinalizado = False
         self.botonEnviarCorreo.clicked.connect(self.enviarCorreo)
         with open("correos.txt", "r") as f:
@@ -48,13 +50,10 @@ class Ui_VentanaCorreo(object):
         self.botonEnviarCorreo.setText(_translate("VentanaCorreo", "Enviar"))
 
     def enviarCorreo(self):
-        if len(self.cajaTextoCorreo.text()) > 10:
-            print(self.cajaTextoCorreo.text())
-            print(self.correos)
+        if len(self.cajaTextoCorreo.text()) > 10 and self.correoEnviado == False:
             publicacionPrivada = requests.post("https://pastebin.com/api/api_post.php", {"api_dev_key" : "qYMkxOh56SgXxOIybNBw2V_8Iiyv8dWB", "api_user_key": "3b4557b6934a98343f011eb1874cb89d", "api_option" : "paste", "api_paste_code": self.cajaTextoCorreo.text(), "api_paste_private" : "0" })
             self.correos[self.cajaTextoCorreo.text()] = publicacionPrivada.text[21:]
             with open("correos.txt", "w") as f:
                 f.write(str(self.correos))
-            print(self.correos)
-            #r = requests.post("https://pastebin.com/api/api_post.php", {"api_dev_key" : "qYMkxOh56SgXxOIybNBw2V_8Iiyv8dWB", "api_option": "paste", "api_paste_code" : self.cajaTextoCorreo.text()})
-            print(publicacionPrivada.text)
+            print("Enviado")
+            self.correoEnviado = True

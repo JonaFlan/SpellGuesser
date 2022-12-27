@@ -89,7 +89,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def enviarRespuesta(self):  
         if self.cajaCampeones.currentText() == self.nameCampeon:
             self.contador += 1
-            if self.contador == 2 and self.quincePuntosObtenidos == False:
+            if self.contador == 1 and self.quincePuntosObtenidos == False:
                 self.abrirVentanaCorreo()
                 self.quincePuntosObtenidos = True
             self.cajaContador.display(self.contador)
