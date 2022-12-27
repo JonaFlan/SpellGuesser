@@ -37,52 +37,52 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.juegoIniciado = True
 
         #REQUEST PARA LA LISTA DE CAMPEONES
-        response = requests.get("http://ddragon.leagueoflegends.com/cdn/12.23.1/data/es_MX/champion.json")
-        r = response.json()
-        data = r["data"]
+        self.response = requests.get("http://ddragon.leagueoflegends.com/cdn/12.23.1/data/es_MX/champion.json")
+        self.r = self.response.json()
+        self.data = self.r["data"]
 
-        idsCampeones = []
-        nombresCampeones = []
+        self.idsCampeones = []
+        self.nombresCampeones = []
 
-        for champion in data.values():
-            idsCampeones.append(champion["key"])
+        for champion in self.data.values():
+            self.idsCampeones.append(champion["key"])
 
-        campeonElegido = random.choice(idsCampeones)
+        campeonElegido = random.choice(self.idsCampeones)
 
         #SE RECORRE CADA CAMPEÓN PARA ENCONTRAR AL ELEGIDO
-        for champion in data.values():
-            nombresCampeones.append(champion["id"])
+        for champion in self.data.values():
+            self.nombresCampeones.append(champion["id"])
             if champion["key"] == campeonElegido:     
                 self.nameCampeon = champion["id"]
-                nameCampeonJson = champion["id"] + ".json"
+                self.nameCampeonJson = champion["id"] + ".json"
         #SE OBTIENE EL NOMBRE DEL CAMPEÓN Y SU VERSIÓN .JSON
         if self.cajaCmapeonesHecha == False:
-            self.cajaCampeones.addItems(nombresCampeones)
+            self.cajaCampeones.addItems(self.nombresCampeones)
             self.cajaCmapeonesHecha = True
         
         #REQUEST PARA OBTENER EL JSON DEL CAMPEÓN SELECCIONADO
-        campeon = "http://ddragon.leagueoflegends.com/cdn/12.23.1/data/es_MX/champion/{}".format(nameCampeonJson)
-        responseCampeon = requests.get(campeon)
-        r = responseCampeon.json()
+        self.campeon = "http://ddragon.leagueoflegends.com/cdn/12.23.1/data/es_MX/champion/{}".format(self.nameCampeonJson)
+        self.responseCampeon = requests.get(self.campeon)
+        self.r = self.responseCampeon.json()
 
         #SE CREA LISTA PARA ALMACENAR LOS HECHIZOS
-        listaHechizo = []
+        self.listaHechizo = []
 
         #SE RECORREN LOS HECHIZOS Y SE AGREGAN A LA LISTA
-        for hechizo in r["data"][self.nameCampeon]["spells"]:
-            listaHechizo.append(hechizo["id"])
+        for hechizo in self.r["data"][self.nameCampeon]["spells"]:
+            self.listaHechizo.append(hechizo["id"])
 
         #SE ELIGE ALEATORIAMENTE UN HECHIZO
-        nameHechizo = random.choice(listaHechizo)
-        nameHechizoPng = nameHechizo + ".png"
+        self.nameHechizo = random.choice(self.listaHechizo)
+        self.nameHechizoPng = self.nameHechizo + ".png"
         #SE OBTIENE EL NOMBRE Y SU VERSION .PNG
 
         #REQUEST PARA OBTENER LA IMAGEN DEL HECHIZO
-        responseHechizo = requests.get("http://ddragon.leagueoflegends.com/cdn/12.23.1/img/spell/{}".format(nameHechizoPng))
+        self.responseHechizo = requests.get("http://ddragon.leagueoflegends.com/cdn/12.23.1/img/spell/{}".format(self.nameHechizoPng))
 
         #SE GUARDA LA IMAGEN DEL HECHIZO
         with open('image.jpg', 'wb') as f:
-            f.write(responseHechizo.content)
+            f.write(self.responseHechizo.content)
         pixmap = QtGui.QPixmap("image.jpg")
         self.etiquetaImagen.setPixmap(pixmap)
         
