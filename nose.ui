@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>404</width>
-    <height>384</height>
+    <width>403</width>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -117,32 +117,19 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="botonPrueba">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>280</y>
-      <width>141</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PROBAR</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>404</width>
+     <width>403</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menunose">
     <property name="title">
-     <string>nose</string>
+     <string>Sistema</string>
     </property>
     <addaction name="actionasdf"/>
    </widget>
@@ -151,7 +138,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionasdf">
    <property name="text">
-    <string>asdf</string>
+    <string>Admin</string>
    </property>
   </action>
  </widget>

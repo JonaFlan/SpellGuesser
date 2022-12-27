@@ -1,6 +1,7 @@
 import sys
 import requests
 import random
+import json
 from PyQt5 import uic, QtWidgets
 from PyQt5 import QtGui
 from ventana15puntos import Ui_VentanaCorreo
@@ -22,8 +23,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #BOTONES
         self.botonActualizarImagen.clicked.connect(self.generarImagen)
         self.botonEnviar.clicked.connect(self.enviarRespuesta)
-        #BOTON DE PRUEBA
-        self.botonPrueba.clicked.connect(self.probar)
+        #DICCIONARIO CON LOS CORREOS
+        with open("correos.txt", "r") as f:
+            self.correos = json.load(f)
     
     def generarImagen(self):
         #campeones = "http://ddragon.leagueoflegends.com/cdn/12.23.1/data/es_MX/champion.json"
@@ -84,10 +86,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         pixmap = QtGui.QPixmap("image.jpg")
         self.etiquetaImagen.setPixmap(pixmap)
         
-    def enviarRespuesta(self):
+    def enviarRespuesta(self):  
         if self.cajaCampeones.currentText() == self.nameCampeon:
             self.contador += 1
-            if self.contador == 1 and self.quincePuntosObtenidos == False:
+            if self.contador == 2 and self.quincePuntosObtenidos == False:
                 self.abrirVentanaCorreo()
                 self.quincePuntosObtenidos = True
             self.cajaContador.display(self.contador)
@@ -102,10 +104,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui = Ui_VentanaCorreo()
         self.ui.setupUi(self.ventana)
         self.ventana.show()
-        
+    
+    def abrirVentanaAdministrador(self):
+        self.ventana = QtWidgets.QMainWindow()
+        self.ui = Ui_VentanaCorreo()
+        self.ui.setupUi(self.ventana)
+        self.ventana.show()
+
     #FUNCION DE PRUEBA
     def probar(self):
-        self.ventana.close()
+        pass
         
 if __name__ == "__main__":
     app =  QtWidgets.QApplication(sys.argv)
