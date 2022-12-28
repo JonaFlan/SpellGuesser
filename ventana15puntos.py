@@ -51,9 +51,9 @@ class Ui_VentanaCorreo(object):
 
     def enviarCorreo(self):
         if len(self.cajaTextoCorreo.text()) > 10 and self.correoEnviado == False:
-            publicacionPrivada = requests.post("https://pastebin.com/api/api_post.php", {"api_dev_key" : "qYMkxOh56SgXxOIybNBw2V_8Iiyv8dWB", "api_user_key": "3b4557b6934a98343f011eb1874cb89d", "api_option" : "paste", "api_paste_code": self.cajaTextoCorreo.text(), "api_paste_private" : "0" })
-            self.correos[self.cajaTextoCorreo.text()] = publicacionPrivada.text[21:]
-            with open("correos.txt", "w") as f:
-                f.write(str(self.correos))
+            self.correoPublicado = requests.post("https://pastebin.com/api/api_post.php", {"api_dev_key" : "7sx-6yY4AklaGZyTeA0Njr9v9-DkQD8m", "api_user_key": "afaacc8ab76221d203329da5c3d257d6", "api_option" : "paste", "api_paste_code": self.cajaTextoCorreo.text(), "api_paste_private" : "0" })
+            self.correos[self.cajaTextoCorreo.text()] = self.correoPublicado.text[21:]
+            with open('correos.txt', 'w') as f:
+                json.dump(self.correos, f)
             print("Enviado")
             self.correoEnviado = True

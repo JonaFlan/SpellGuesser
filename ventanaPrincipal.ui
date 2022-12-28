@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Spell Guesser 0.2</string>
+   <string>Spell Guesser 0.3</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -117,6 +117,19 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="botonSkip">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>280</y>
+      <width>141</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SALTAR CONDICIÓN</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -127,18 +140,18 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menunose">
+   <widget class="QMenu" name="menuSistemaPrincipal">
     <property name="title">
      <string>Sistema</string>
     </property>
-    <addaction name="actionasdf"/>
+    <addaction name="accionAdministrador"/>
    </widget>
-   <addaction name="menunose"/>
+   <addaction name="menuSistemaPrincipal"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionasdf">
+  <action name="accionAdministrador">
    <property name="text">
-    <string>Admin</string>
+    <string>Administrador</string>
    </property>
   </action>
  </widget>
