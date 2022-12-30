@@ -16,6 +16,9 @@ class Ui_VentanaContrasena(object):
     def setupUi(self, VentanaContrasena):
         VentanaContrasena.setObjectName("VentanaContrasena")
         VentanaContrasena.resize(290, 80)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icono.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        VentanaContrasena.setWindowIcon(icon)
         self.cajaTextoContrasena = QtWidgets.QLineEdit(VentanaContrasena)
         self.cajaTextoContrasena.setGeometry(QtCore.QRect(20, 20, 251, 20))
         self.cajaTextoContrasena.setObjectName("cajaTextoContrasena")

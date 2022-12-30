@@ -90,17 +90,20 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.etiquetaImagen.setPixmap(pixmap)
         
     def enviarRespuesta(self):  
-        if self.cajaCampeones.currentText() == self.nameCampeon:
-            self.contador += 1
-            if self.contador == 15 and self.quincePuntosObtenidos == False:
-                self.abrirVentanaCorreo()
-                self.quincePuntosObtenidos = True
-            self.cajaContador.display(self.contador)
-            self.generarImagen()
-        else:
-            self.contador = 0
-            self.cajaContador.display(self.contador)
-            self.generarImagen()
+        try:
+            if self.cajaCampeones.currentText() == self.nameCampeon:
+                self.contador += 1
+                if self.contador == 15 and self.quincePuntosObtenidos == False:
+                    self.abrirVentanaCorreo()
+                    self.quincePuntosObtenidos = True
+                self.cajaContador.display(self.contador)
+                self.generarImagen()
+            else:
+                self.contador = 0
+                self.cajaContador.display(self.contador)
+                self.generarImagen()
+        except:
+            pass
     
     def abrirVentanaCorreo(self):
         self.ventana = QtWidgets.QMainWindow()
