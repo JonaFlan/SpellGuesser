@@ -6,6 +6,7 @@ from PyQt5 import uic, QtWidgets
 from PyQt5 import QtGui
 from ventana15puntos import Ui_VentanaCorreo
 from ventanaAdministrador import Ui_VentanaAdministrador
+from ventanaContrasena import Ui_VentanaContrasena
 
 qtCreatorFile = "ventanaPrincipal.ui" 
 
@@ -24,8 +25,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #BOTONES
         self.botonActualizarImagen.clicked.connect(self.generarImagen)
         self.botonEnviar.clicked.connect(self.enviarRespuesta)
-        self.accionAdministrador.triggered.connect(self.abrirVentanaAdministrador)
-        self.botonSkip.clicked.connect(self.abrirVentanaCorreo)
+        self.accionAdministrador.triggered.connect(self.abrirVentanaContrasena)
         #DICCIONARIO CON LOS CORREOS
         with open("correos.txt", "r") as f:
             self.correos = json.load(f)
@@ -111,6 +111,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def abrirVentanaAdministrador(self):
         self.ventana = QtWidgets.QMainWindow()
         self.ui = Ui_VentanaAdministrador()
+        self.ui.setupUi(self.ventana)
+        self.ventana.show()
+    
+    def abrirVentanaContrasena(self):
+        self.ventana = QtWidgets.QMainWindow()
+        self.ui = Ui_VentanaContrasena()
         self.ui.setupUi(self.ventana)
         self.ventana.show()
 
