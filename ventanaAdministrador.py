@@ -18,6 +18,9 @@ class Ui_VentanaAdministrador(object):
     def setupUi(self, VentanaAdministrador):
         VentanaAdministrador.setObjectName("VentanaAdministrador")
         VentanaAdministrador.resize(400, 272)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icono.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        VentanaAdministrador.setWindowIcon(icon)
         self.botonBorrar = QtWidgets.QPushButton(VentanaAdministrador)
         self.botonBorrar.setGeometry(QtCore.QRect(300, 50, 75, 23))
         self.botonBorrar.setObjectName("botonBorrar")
